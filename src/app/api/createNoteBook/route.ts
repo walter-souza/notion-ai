@@ -6,6 +6,8 @@ import { generateImage, generateImagePrompt } from "@/lib/openai";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
+export const runtime = "edge";
+
 export async function POST(req: Request) {
   const { userId } = auth();
   if (!userId) {
@@ -34,6 +36,6 @@ export async function POST(req: Request) {
     });
 
   return NextResponse.json({
-    note_id: notes_ids[0].insertedID
+    note_id: notes_ids[0].insertedID,
   });
 }
